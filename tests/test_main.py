@@ -35,7 +35,7 @@ def test_polish_falls_back_when_no_project(monkeypatch):
 
     # Assert
     assert response.status_code == 200
-    assert response.json()["source"] == "gemini"
+    assert response.json()["source"] == "fallback"
 
 
 def test_polish_returns_gemini_story(monkeypatch):
