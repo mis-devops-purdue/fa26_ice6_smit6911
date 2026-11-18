@@ -29,6 +29,6 @@ build:
   variables:
     DOCKER_TLS_CERTDIR: "/certs"   # lets the client and engine talk over TLS
   rules:
-    - when: on_success             # run only if the test stage passed
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH   # only on main, and only if the test stage passed
   script:
     - docker build -t story_polisher:$CI_COMMIT_SHORT_SHA .   # build, tagged with the commit
