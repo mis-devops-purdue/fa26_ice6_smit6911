@@ -18,7 +18,7 @@ test:
     - pip install poetry           # Poetry reads pyproject.toml and poetry.lock
     - poetry config virtualenvs.create false   # install into the image itself, no extra venv
     - poetry install --no-root     # install the app's dependencies (the app is not a package)
-    - poetry run pytest            # run tests/; a failing test fails the job
+    - poetry run pytest -v         # run tests/; -v lists every test by name
 
 # Build job: proves the Dockerfile builds. It does not push the image anywhere and uses no GCP.
 build:
