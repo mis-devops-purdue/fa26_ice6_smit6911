@@ -86,6 +86,16 @@ def test_polish_rejects_long_idea():
     # Assert
     assert response.status_code == 422
 
+def test_polish_accepts_idea_at_limit(monkeypatch):
+    # Arrange
+    monkeypatch.delenv("GOOGLE_CLOUD_PROJECT", raising=False)
+    payload = {"idea": "x" * main.MAX_IDEA_CHARS}
+
+    # Act
+    response = client.post("/polish", json=payload)
+
+    # Assert
+    assert response.status_code == 200
 
 def test_polish_returns_502_when_gemini_fails(monkeypatch):
     # Arrange
